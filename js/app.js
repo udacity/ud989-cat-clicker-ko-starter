@@ -37,7 +37,7 @@ var initialCats = [
 //this is model actually, and view? There is no view :)
 
 var Cat = function (data) {
-  this.active = ko.observable(0);
+  this.active = ko.observable();
   this.clickCount = ko.observable(data.click);
   this.name = ko.observable(data.name);
   this.imgSrc = ko.observable(data.img);
@@ -80,7 +80,13 @@ var viewModel = function () {
   this.setCat = function (maca, r) {
     console.log(maca, r);
     self.curentCat(maca);
-  }
+  };
+  self.doSomething = function (obj, el) {
+    console.log(el.target.parentElement);
+    this.nickNames.push(this.active());
+    console.log(el, this.nickNames());
+  };
+
 };
 
 

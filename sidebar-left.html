@@ -44,6 +44,10 @@
       attr: {src: imgSrc}">
 
       <h3>Nicknames:</h3>
+      <form>
+        <input type='text' data-bind='value: active'>
+        <input type='submit' data-bind='click: $parent.doSomething' value='Add'>
+      </form>
       <ul data-bind="foreach: nickNames">
         <li>
           <span data-bind="text: $data, attr: {id: $index}"> </span>
