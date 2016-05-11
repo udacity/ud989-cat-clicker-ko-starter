@@ -37,6 +37,7 @@ var initialCats = [
 //this is model actually, and view? There is no view :)
 
 var Cat = function (data) {
+  var self = this;
   this.active = ko.observable();
   this.clickCount = ko.observable(data.click);
   this.name = ko.observable(data.name);
@@ -45,6 +46,12 @@ var Cat = function (data) {
   this.level = ko.observable('Newborn');
   this.levels = ko.observableArray(['Infant', 'Baby', 'Teen', 'Grown Cat', 'Middle Age Cat', 'Old Fart']);
   this.nickNames = ko.observableArray(data.nickNames);
+
+  self.removeNick = function (name) {
+    self.nickNames.remove(function (empName) {
+      return empName == name;
+    });
+  }
 
   //level logic
   ko.computed(function () {
@@ -73,6 +80,7 @@ var viewModel = function () {
   });
 
   this.curentCat = ko.observable(this.catList()[0]);
+
   self.incrementCounter = function () {
     this.clickCount(this.clickCount() + 1);
   };
@@ -81,10 +89,26 @@ var viewModel = function () {
     console.log(maca, r);
     self.curentCat(maca);
   };
-  self.doSomething = function (obj, el) {
-    console.log(el.target.parentElement);
-    this.nickNames.push(this.active());
-    console.log(el, this.nickNames());
+  self.magic = ko.observable(false);
+
+  this.removeNick = function () {
+    console.log('hi from CAT', this);
+    this.nickNames.remove(this);
+  };
+
+  self.addNick = function (obj, el) {
+    console.log('live', this);
+
+    var input = el.target.parentElement.firstElementChild;
+    if (this.active()) {
+      this.nickNames.push(this.active());
+      self.magic(true);
+      setTimeout(e => {
+        return self.magic(false);
+      }, 1000);
+    };
+
+    input.value = '';
   };
 
 };
