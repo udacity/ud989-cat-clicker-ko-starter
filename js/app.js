@@ -48,9 +48,10 @@ var Cat = function (data) {
   this.nickNames = ko.observableArray(data.nickNames);
 
   self.removeNick = function (name) {
-    self.nickNames.remove(function (empName) {
-      return empName == name;
-    });
+    console.log(name, this);
+        self.nickNames.remove(function (empName) {
+          return empName == name;
+        });
   }
 
   //level logic

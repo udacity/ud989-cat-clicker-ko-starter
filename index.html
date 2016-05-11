@@ -34,6 +34,7 @@
 
   <div class="main-content">
     <ul id="cat-list"></ul>
+    <!--Binding Context: THIS IS CURENT CAT!-->
     <div id="cat" data-bind="with: curentCat">
 
       <h2 id="cat-name" data-bind='text: name'></h2>
@@ -51,13 +52,14 @@
       <div data-bind="visible: $parent.magic" id='msg'>
         Good Job!
       </div>
+
       <ul data-bind="foreach: nickNames">
         <li>
           <span data-bind="text: $data, attr: {id: $index}"> </span>
           <a href="#" data-bind="click: $parent.removeNick">Remove</a>
-
         </li>
       </ul>
+      <!--Binding Context: THIS IS CURENT CAT!-->
 
     </div>
 
