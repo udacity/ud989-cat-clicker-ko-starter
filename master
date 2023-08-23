@@ -8,7 +8,7 @@
     <ul id="cat-list"></ul>
     <div id="cat">
 
-        <h2 id="cat-name"></h2>
+        <h2 id="cat-name"><m/h2>
         <div id="cat-count"></div>
         <img id="cat-img" src="" alt="cute cat">
 
